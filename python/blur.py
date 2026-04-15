@@ -36,90 +36,63 @@ print("kernel result:")
 print(k)
 
 
+# weighted sum
+def w_sum(x:float, neighs:np.array, k:np.array) -> float:
+    sx = 0.0
+    rows, cols = neighs.shape
+    for i in range(rows):
+        for j in range(cols):
+            sx += neighs[i, j] * k[i, j]
+    return sx     
+
+
 
 # test
+pxs = np.random.rand(3,3)
+c = pxs[1,1]
+neighs = pxs
+
+w = w_sum(c, neighs, k)
+print(w)
 
 
 
 
 
-
-
-
-# test2
-# px = np.random.rand(3,3)
-# for i in range(3):
-#     for j in range(3):
-
-
-
-
-
-
-
-def apply_kernel(px):
+def blur(px):
     dims = px.shape
     n_rows = dims[0]
     n_cols = dims[1]
+    b = np.zeros(dims)
 
     for i in range(n_rows):
         for j in range(n_cols):
+            
+            # if top
+                # if left corn.
+                # if right corn.
+                # else
+
+            # if floor
+                # if left corn.
+                # if right corn.
+                # else
+
+            # if left wall
+                # if top corn.
+                # if floor corn.
+                # else
+
+            # if right wall
+                # if top corn.
+                # if floor corn.
+                # else
+
+
+
+
+
+
             pass
 
 
-
-
-
-
-
-
-# def apply_kernel(px:np.array, g:function, sig:float):
-#     dims = px.shape
-#     n_rows = dims[0] - 1
-#     n_cols = dims[1] - 1
-#     blur = np.zeros(dims)
-
-#     for i in range(n_rows):
-#         for j in range(n_cols):
-
-            
-#             neighs = []
-
-#             # if top
-#                 # if left corn.
-#                 # if right corn.
-#                 # else
-#             if i == 0:
-#                 if j == 0:
-#                     # neighs.append((0, 1))
-#                     # neighs.append((1, 1))
-#                     # neighs.append((1, 0))
-#                     blur[i]
-#                     blur[][j] = g(0, 1, sig)
-#                     blur[i][j] = g(1, 1, sig)
-#                     blur[i][j] = g(1, 0, sig)
-
-#                 elif j == n_cols:
-#                     neighs.append()
-                    
-#                 else:
-#                     pass        
-
-#             # if floor
-#                 # if left corn.
-#                 # if right corn.
-#                 # else
-
-#             # if left wall
-#                 # if top corn.
-#                 # if floor corn.
-#                 # else
-
-#             # if right wall
-#                 # if top corn.
-#                 # if floor corn.
-#                 # else
-
-
-
-#     pass
