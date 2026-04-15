@@ -47,7 +47,7 @@ def w_sum(x:float, neighs:np.array, k:np.array) -> float:
 
 
 
-# test
+# ----------- test
 pxs = np.random.rand(3,3)
 c = pxs[1,1]
 neighs = pxs
@@ -89,7 +89,7 @@ def blur(px):
                 # else
 
 
-
+            # else (interior)
 
 
 
