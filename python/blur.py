@@ -52,6 +52,7 @@ pxs = np.random.rand(3,3)
 c = pxs[1,1]
 neighs = pxs
 
+k = kernel(3, g, 1)
 w = w_sum(c, neighs, k)
 print(w)
 
