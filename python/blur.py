@@ -60,20 +60,40 @@ print(w)
 
 
 
-def blur(px):
+def blur(px, k_dimdim:int, sig:float):
     dims = px.shape
     n_rows = dims[0]
     n_cols = dims[1]
     b = np.zeros(dims)
-
+    k = kernel(k_dim,sig)
+    
     for i in range(n_rows):
         for j in range(n_cols):
             
+            neighs = np.zeros(k_dim,k_dim)
             # if top
+            if i == 0:
+        
                 # if left corn.
+                if j == 0:
+                    neighs[1][2] = px[i][j+1]
+                    neighs[2][1] = px[i+1][j]
+                    neighs[2][2] = px[i+1][j+1]
+                    
+            
                 # if right corn.
+                elif j == dims[1] - 1:
+                    neighs[1][0] = px[i][j-1]
+                    neighs[0][0] = px[i+1][j-1]
+                    neighs[2][1] = px[i+1][j]
+                    
                 # else
-
+                else:
+                    neighs[1][2] = px[i][j+1]
+                    neighs[2][1] = px[i+1][j]
+                    neighs[2][2] = px[i+1][j+1]
+                    neighs[1][0] = px[i][j-1]
+                    neighs[2][0] = px[i+1][j-1]
             # if floor
                 # if left corn.
                 # if right corn.
