@@ -42,7 +42,10 @@ def w_sum(x:float, neighs:np.array, k:np.array) -> float:
     rows, cols = neighs.shape
     for i in range(rows):
         for j in range(cols):
-            sx += neighs[i, j] * k[i, j]
+            if neighs[i, j] == 0.0:
+                continue
+            else:
+                sx += neighs[i, j] * k[i, j]
     return sx     
 
 
@@ -112,8 +115,9 @@ def blur(px, k_dimdim:int, sig:float):
 
             # else (interior)
 
+            b[i,j] = w_sum(px[i,j], neighs, k)
 
 
-            pass
+    return b
 
 
