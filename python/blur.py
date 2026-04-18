@@ -30,10 +30,9 @@ def kernel(dim:int, g, sig:float) -> np.array:
     k /= k.sum()
     return k
 
-print("")
-k = kernel(3, g, 1)
-print("kernel result:")
-print(k)
+
+
+
 
 
 # weighted sum
@@ -42,38 +41,34 @@ def w_sum(x:float, neighs:np.array, k:np.array) -> float:
     rows, cols = neighs.shape
     for i in range(rows):
         for j in range(cols):
-            if neighs[i, j] == 0.0:
-                continue
-            else:
-                sx += neighs[i, j] * k[i, j]
+            sx += neighs[i, j] * k[i, j]
     return sx     
 
 
 
 # ----------- test
 pxs = np.random.rand(3,3)
-c = pxs[1,1]
-neighs = pxs
-
-k = kernel(3, g, 1)
-w = w_sum(c, neighs, k)
-print(w)
-
+k = kernel(3, g, 0.5)
+print(k)
+print("")
+print(pxs)
+print(w_sum(pxs[1,1], pxs, k))
 
 
 
 
-def blur(px, k_dimdim:int, sig:float):
+def blur(px, k_dim:int, sig:float):
     dims = px.shape
     n_rows = dims[0]
     n_cols = dims[1]
     b = np.zeros(dims)
-    k = kernel(k_dim,sig)
+    k = kernel(k_dim, g, sig)
     
     for i in range(n_rows):
         for j in range(n_cols):
             
-            neighs = np.zeros(k_dim,k_dim)
+            neighs = np.zeros((k_dim,k_dim))
+            neighs[1][1] = px[i][j]
             # if top
             if i == 0:
         
@@ -83,7 +78,6 @@ def blur(px, k_dimdim:int, sig:float):
                     neighs[2][1] = px[i+1][j]
                     neighs[2][2] = px[i+1][j+1]
                     
-            
                 # if right corn.
                 elif j == dims[1] - 1:
                     neighs[1][0] = px[i][j-1]
@@ -97,6 +91,18 @@ def blur(px, k_dimdim:int, sig:float):
                     neighs[2][2] = px[i+1][j+1]
                     neighs[1][0] = px[i][j-1]
                     neighs[2][0] = px[i+1][j-1]
+
+                print("i,j = ", (i, j))
+                print(px[i,j])
+                print(neighs)
+                y = w_sum(px[i,j], neighs, k)
+                print(y)
+                print("")
+                b[i,j] = w_sum(px[i,j], neighs, k)
+            
+            # else:
+            #     b[i,j] = px[i,j]
+
             # if floor
                 # if left corn.
                 # if right corn.
@@ -115,9 +121,13 @@ def blur(px, k_dimdim:int, sig:float):
 
             # else (interior)
 
-            b[i,j] = w_sum(px[i,j], neighs, k)
-
+            
 
     return b
+
+
+# blur_img = blur(img, 3, 0.001)
+# plt.imshow(blur_img)
+# plt.show()
 
 
