@@ -50,4 +50,7 @@ if __name__ == '__main__':
 
     print(f'speedup: {s_t / p_t}')
 
+    plt.imshow(blurred.T, cmap='grey')
+    plt.show()
+
 
