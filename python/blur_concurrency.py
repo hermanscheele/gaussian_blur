@@ -35,7 +35,8 @@ if __name__ == '__main__':
     start = time.time()
     blurrd = blur(img, k_dim, sig)
     end = time.time()
-    print(f'sequential_t: {end - start} s')
+    s_t = end - start
+    print(f'sequential_t: {s_t} s')
 
     # parallel blurring (cores = 12)
     start = time.time()
@@ -43,12 +44,10 @@ if __name__ == '__main__':
         results = p.map(blur_rows, chunks)
     blurred = np.vstack(results)
     end = time.time()
-    print(f'parallel_t: {end - start} s')
+    p_t = end - start
+    print(f'parallel_t: {p_t} s')
 
 
-
-
-
-
+    print(f'speedup: {s_t / p_t}')
 
 
