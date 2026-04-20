@@ -161,12 +161,12 @@ def blur(px, k_dim:int, sig:float):
 
 
 
-k_dim = 3
-sig = 30.0
+# k_dim = 3
+# sig = 30.0
 
-k = kernel(k_dim, g, sig)
-blurd = blur(img, k_dim, sig)
-print("blurring complete !")
+# k = kernel(k_dim, g, sig)
+# blurd = blur(img, k_dim, sig)
+# print("blurring complete !")
 # print(k)
 
 # plt.imshow(img, cmap='grey')
