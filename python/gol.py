@@ -3,7 +3,6 @@ import numpy as np
 
 
 def init_grid(w, h):
-
     grid = np.zeros((w, h))
     return grid
        
@@ -15,15 +14,17 @@ def render_grid(grid):
 
 
 def add_ones(grid, cord: list): # cor = [ (1,2), (3,3) ]
+    n_grid = np.zeros_like(grid)
     for tuple in cord:
         x = tuple[0]
         y = tuple[1]
-        grid[x][y] = 1
+        n_grid[x][y] = 1
+    return n_grid
 
-def gen_random(n, count):
+def gen_random(w, h, count):
     cord = []
     for i in range(count):
-        cord.append((random.randint(0, n-1), random.randint(0, n-1)))
+        cord.append((random.randint(0, w-1), random.randint(0, h-1)))
     return cord
 
 
@@ -32,9 +33,11 @@ def gen_random(n, count):
 def apply_rule(grid):
     buffer = [row[:] for row in grid]
     n = len(grid) 
-
-    for i in range(n):
-        for j in range(n):
+    h = grid.shape[0]
+    w = grid.shape[1]
+    
+    for i in range(h):
+        for j in range(w):
             count = 0
 
             # if celling
@@ -51,7 +54,7 @@ def apply_rule(grid):
 
 
                 # if right corner
-                elif j == (n - 1):
+                elif j == (w - 1):
                     left_neigh = grid[i][j-1]
                     down_neigh = grid[i+1][j]
                     down_left_diag = grid[i+1][j-1]
@@ -77,7 +80,7 @@ def apply_rule(grid):
             
             
             # if floor
-            elif i == (n - 1):
+            elif i == (h - 1):
                 # if left corner
                 if j == 0:
                     right_neigh = grid[i][j+1]
@@ -89,7 +92,7 @@ def apply_rule(grid):
                     count += 1 if up_right_diag == 1 else 0
 
                 # if right corner
-                elif j == (n - 1):
+                elif j == (w - 1):
                     left_neigh = grid[i][j-1]
                     up_neigh = grid[i-1][j]
                     up_left_diag = grid[i-1][j-1]
@@ -131,7 +134,7 @@ def apply_rule(grid):
 
 
                 # if right wall 
-                elif j == (n - 1):
+                elif j == (w - 1):
                     up_neigh = grid[i-1][j]
                     down_neigh = grid[i+1][j]
                     left_neigh = grid[i][j-1]
@@ -192,7 +195,7 @@ def apply_rule(grid):
 def game_of_life(w, h, cordinates, it):
 
     grid = init_grid(w, h)
-    add_ones(grid, cordinates)
+    grid = add_ones(grid, cordinates)
     
     i = 0
     while i < it:
@@ -203,5 +206,13 @@ def game_of_life(w, h, cordinates, it):
 
 
 
+
+# g = init_grid(3, 10)
+# co = gen_random(3, 10, 30)
+# add_ones(g, co)
+# render_grid(g)
+# print(g.shape)
+
+# game_of_life(3, 10, co, 10)
 
 

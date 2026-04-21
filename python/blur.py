@@ -71,7 +71,7 @@ def blur(px, k_dim:int, sig:float):
     r = 0
     for i in range(n_rows):
         r += 1
-        print('row: ', r)
+        # print('row: ', r)
 
         for j in range(n_cols):
 
@@ -167,6 +167,7 @@ def blur(px, k_dim:int, sig:float):
 # k = kernel(k_dim, g, sig)
 # blurd = blur(img, k_dim, sig)
 # print("blurring complete !")
+# print(blurd.shape)
 # print(k)
 
 # plt.imshow(img, cmap='grey')
