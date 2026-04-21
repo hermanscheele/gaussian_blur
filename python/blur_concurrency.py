@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 from skimage import img_as_float, color
 import imageio.v3 as iio
 from multiprocessing import Pool, cpu_count
-from blur import blur
+from blur import blur, kernel, g
 import time
 
 
-img = iio.imread("./imgs/me.png")
+img = iio.imread("./imgs/city.jpg")
 img_grey = color.rgb2gray(img)
 img = img_as_float(img_grey)
 dims = img.shape
@@ -50,7 +50,19 @@ if __name__ == '__main__':
 
     print(f'speedup: {s_t / p_t}')
 
-    plt.imshow(blurred.T, cmap='grey')
+    plt.imshow(blurred, cmap='grey')
     plt.show()
+
+
+
+
+    # investigation --------------
+    # col = blurred[15:19]
+    # print(col[:10])
+    # k = kernel(3, g, 1.0)
+    # print(k)
+
+    # plt.imshow(col, cmap='grey')
+    # plt.show()
 
 
