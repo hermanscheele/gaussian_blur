@@ -31,6 +31,9 @@ idx = []
 for i in range(cores):
     idx.append((chunk_size * i, chunk_size * (i+1))))
 
+idx_2 = [(chunk_size * i, chunk_size * (i+1)) for i in range(cores)]
+
+
 def blur_idx(idx):
     return blur(img[idx[0] : idx[1]], k_dim, sig)
 
