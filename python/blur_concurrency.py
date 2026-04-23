@@ -25,8 +25,14 @@ sig = 1.0
 def blur_rows(rows):
     return blur(rows, k_dim, sig)
 
-chunks = np.array_split(img, cores)
+#chunks = np.array_split(img, cores)
+chunk_size = len(img) // cores - 1
+idx = []
+for i in range(cores):
+    idx.append((chunk_size * i, chunk_size * (i+1))))
 
+def blur_idx(idx):
+    return blur(img[idx[0] : idx[1]], k_dim, sig)
 
 
 if __name__ == '__main__':
