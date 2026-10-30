@@ -2,12 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage import img_as_float, color
 import imageio.v3 as iio
+from pathlib import Path
 from multiprocessing import Pool, cpu_count
 from blur import blur, kernel, g
 import time
 
 
-img = iio.imread("./imgs/city.jpg")
+img = iio.imread(Path(__file__).resolve().parent.parent / "imgs" / "city.jpg")
 img_grey = color.rgb2gray(img)
 img = img_as_float(img_grey)
 dims = img.shape

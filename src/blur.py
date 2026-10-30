@@ -1,18 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from skimage import img_as_float, color
-import imageio.v3 as iio
-
-img = iio.imread("./imgs/city.jpg")
-img_grey = color.rgb2gray(img)
-img = img_as_float(img_grey)
-dims = img.shape
-
-
-
-# plt.imshow(img, cmap='gray')
-# plt.show()
-
 
 
 # gaussian blur

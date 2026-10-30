@@ -2,6 +2,7 @@ import numpy as np
 import pygame as pg
 from blur import blur
 import imageio.v3 as iio
+from pathlib import Path
 from skimage import img_as_float, color
 from gol import apply_rule, init_grid, gen_random, add_ones, render_grid
 BLACK = (0, 0, 0)
@@ -11,7 +12,7 @@ sig = 2.0
 
 
 
-img = iio.imread("./imgs/city.jpg")
+img = iio.imread(Path(__file__).resolve().parent.parent / "imgs" / "city.jpg")
 img_grey = color.rgb2gray(img)
 img = np.array(img_as_float(img_grey))
 dims = img.shape

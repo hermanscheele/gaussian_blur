@@ -1,1 +1,6 @@
-imgs
+# input images (add your own, e.g. imgs/city.jpg)
+imgs/
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
